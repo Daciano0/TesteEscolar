@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta charset="UTF-8" />
+</h:head>
+
+<body>
+
+<p:outputLabel value="Teste"/>
+
+<p:inputText value="Valor"/>
+
+	<p:layout  fullPage="true"  style="background:black">
+
+		<p:layoutUnit position="west" style="background:black;" size="100px">
+
+			<h:form style="width:215px">
+
+				<p:menu>
+					
+						<p:menuitem value="Cadastro de Alunos" outcome="aluno" />
+						<p:menuitem value="Cadastro de Professores" outcome="professor"/>
+						<p:menuitem value="Cadastro de turma" outcome="turma" />
+					
+				</p:menu>
+
+			</h:form>
+
+		</p:layoutUnit>
+				
+		<p:layoutUnit position="center" style="background:black" size="200px">
+				
+				
+			<h1>
+				<ui:insert name="title" />
+			</h1>
+
+
+			<ui:insert name="body">
+
+
+			</ui:insert>
+
+			<ui:insert name="footer">
+
+				<p:outputLabel value="Sistema Escolar" />
+
+			</ui:insert>
+
+
+		</p:layoutUnit>
+
+
+	</p:layout>
+
+
+</body>
+</html>

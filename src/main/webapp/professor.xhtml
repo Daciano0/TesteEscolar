@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/index.xhtml">
+	
+		
+		<ui:define name="title">Cadastro de Professores</ui:define>
+	
+		 <ui:define name="body">
+	
+			<h:form id="idProfessor">
+			
+				<p:toolbar>
+				
+					<f:facet name="left">
+						<p:menu style="border:none; background:Black;color:white">
+							<p:menuitem value="Lista de Professores" action="#{professorBean.gerarLista()}" update="idProfessor" style="color:white"/>
+						</p:menu>
+					</f:facet>
+				
+				</p:toolbar>
+				
+					
+				<p:panelGrid columns="2" id="professorgrid1" rendered="#{professorBean.exibir()}">
+				
+					<p:outputLabel value="Nome: "/>
+					<p:inputText value="#{professorBean.professor.nome}"/>
+					<p:outputLabel value="CPF: "/>
+					<p:inputText value="#{professorBean.professor.cpf}"/>
+					<p:outputLabel value="Idade: "/>
+					<p:inputText value="#{professorBean.professor.idade}"/>
+					<p:outputLabel value="Telefone: "/>
+					<p:inputMask mask="(99)99999-9999" value="#{professorBean.professor.telefone}"/>
+					<p:outputLabel value="Data: "/>
+					<p:inputText value="#{professorBean.professor.data}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</p:inputText>
+					<p:outputLabel value="Materia: "/>
+					<p:inputText value="#{professorBean.professor.materia}"/>
+				
+				</p:panelGrid>
+				
+				<p:commandButton value="Salvar" action="#{professorBean.salvar()}" update="idProfessor" />
+					
+				<p:panelGrid  id="professorgrid2" rendered="#{professorBean.exibir() != true}">
+				
+					<p:dataTable id="professortable" value="#{professorBean.professores}" var="professor">
+					
+						<p:column headerText="Nome">
+							<p:outputLabel value="#{professor.nome}" />
+						</p:column>
+						
+						<p:column headerText="CPF">
+							<p:outputLabel value="#{professor.cpf}" />
+						</p:column>
+						
+						<p:column headerText="Idade">
+							<p:outputLabel value="#{professor.idade}" />
+						</p:column>
+						
+						<p:column headerText="Telefone">
+							<p:outputLabel value="#{professor.telefone}" />
+						</p:column>
+						
+						<p:column headerText="Data">
+							<p:outputLabel value="#{professor.data}" />
+						</p:column>
+					
+						<p:column headerText="Matéria">
+							<p:outputLabel value="#{professor.materia}" />
+						</p:column>
+					
+					</p:dataTable>
+				
+				</p:panelGrid>
+			
+			</h:form>	 	
+		 
+		 </ui:define>
+		  
+		 <ui:define name="footer">
+		 <p:separator style="background:black;height:30px"/>
+		 	<footer style="background:Black; color:white">
+		 	Cadastro de Professores
+		 	</footer>
+		 </ui:define>
+	
+	</ui:composition>
+</html>

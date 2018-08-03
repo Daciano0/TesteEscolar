@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+	<ui:composition template="/index.xhtml">
+	
+		<ui:define name="title">Cadastro</ui:define>
+	
+		<ui:define name="body">
+		
+	 	<h:form id="idAluno">
+		
+		
+		<p:toolbar>
+			
+			<f:facet name="left">
+			<p:menu style="border:none; background:Black;">
+				<p:menuitem value="Lista de Alunos" style="color:white;" action="#{alunoBean.gerarLista()}" update="idAluno"/>
+			</p:menu>
+		</f:facet>
+		</p:toolbar>
+		
+		<p:panelGrid columns="2" id="alunogrid1" rendered="#{alunoBean.exibir() != false}" >
+				
+				<f:facet name="header">
+					<p:outputLabel value="Tela de Cadastro"/>
+				</f:facet>
+				<p:outputLabel value="Nome: "/>
+				<p:inputText value="#{alunoBean.aluno.nome}" />
+				<p:outputLabel value="Idade: "/>
+				<p:inputText value="#{alunoBean.aluno.idade}" />
+				<p:outputLabel value="CPF: "/>
+				<p:inputText value="#{alunoBean.aluno.cpf}" />
+				<p:outputLabel value="Telefone: "/>
+				<p:inputText value="#{alunoBean.aluno.telefone}" />
+				<p:outputLabel value="Pago: "/>
+				<p:selectOneMenu value="#{alunoBean.aluno.pago}">
+					<f:selectItem itemLabel="Sim" itemValue="true"/>
+					<f:selectItem itemLabel="Não" itemValue="false"/>
+				</p:selectOneMenu>
+				<p:outputLabel value="Data: "/>
+				<p:inputMask mask="99/99/9999"  value="#{alunoBean.aluno.data}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputMask>
+														
+				</p:panelGrid>
+		
+			<p:commandButton value="Salvar" action="#{alunoBean.salvar()}" update="idAluno" />
+			
+			
+			<h:panelGrid  id="alunogrid2" rendered="#{alunoBean.exibir() != true}">
+			
+				<p:dataTable var="aluno" value="#{alunoBean.alunos}" >
+				
+					<p:column headerText="Nome">
+						<p:outputLabel value="#{aluno.nome}" />
+					</p:column>
+					
+					<p:column headerText="Idade">
+						<p:outputLabel value="#{aluno.idade}" />
+					</p:column>
+					
+					<p:column headerText="CPF">
+						<p:outputLabel value="#{aluno.cpf}" />
+					</p:column>
+					
+					<p:column headerText="Telefone">
+						<p:outputLabel value="#{aluno.telefone}" />
+					</p:column>
+				
+					<p:column headerText="Pago">
+						<p:outputLabel value="#{aluno.pago}" />
+					</p:column>
+					
+					<p:column headerText="Data">
+						<p:outputLabel value="#{aluno.data}" />
+					</p:column>
+					
+				
+				</p:dataTable>
+			
+			</h:panelGrid>
+		
+		</h:form>
+		
+		</ui:define>
+		
+		
+		
+		<ui:define name="footer">
+			<p:separator style="background:black;height:30px"/>
+			<footer style="background:Black; color:white">
+		 	Cadastro de Aluno
+		 	</footer>
+			
+		</ui:define>
+	
+	</ui:composition>
+	
+</html>

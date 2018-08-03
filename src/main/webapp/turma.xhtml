@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="/index.xhtml">
+	
+		<ui:define name="title">
+			Cadastro de Turmas
+		</ui:define>
+	
+		<ui:define name="body">
+			
+			<h:form id="idTurma">
+			
+			
+				<p:toolbar id="bar">
+					
+					<p:menu style="background:Black">
+						<p:menuitem value="Lista de Turmas" action="#{turmaBean.exibir()}" update="idTurma" style="color:white"/>
+					</p:menu>
+				
+				</p:toolbar>
+			
+				<p:panelGrid columns="2" id="turmaGrid1" rendered="#{turmaBean.exibir()}">
+					
+					
+					<p:outputLabel value="Sala: "/>
+					<p:inputText value="#{turmaBean.turma.sala}" />
+					<p:outputLabel value="Alunos"/>
+					<p:selectOneListbox  value="#{turmaBean.turma.aluno}">
+						<f:selectItems value="#{turmaBean.Alunos()}" var="alunos" itemLabel="#{alunos.nome}" itemValue="#{alunos}"/>
+					</p:selectOneListbox>
+					
+					<p:outputLabel value="Professor"/>
+					<p:selectOneListbox value="#{turmaBean.turma.professor}" converter="professorId">
+						<f:selectItems  value="#{turmaBean.Professores()}" var="professores" itemLabel="#{professores.nome}"/>
+					</p:selectOneListbox>
+					
+					
+					
+				</p:panelGrid>
+				
+				<p:commandButton value="Salvar" action="#{turmaBean.salvar()}" update="idTurma"/>
+				
+				<p:panelGrid id="turmaGrid2" rendered="#{turmaBean.exibir() != true}">
+					
+					<p:dataTable id="turmaTable">
+					
+					
+					</p:dataTable>
+				
+				</p:panelGrid>
+			
+			</h:form>
+		
+		</ui:define>
+		
+		<ui:define name="footer">
+		<p:separator style="background:black;height:30px"/>
+			<footer style="background:Black; color:white">
+		 	Cadastro de Aluno
+		 	</footer>
+		
+		</ui:define>
+	
+	</ui:composition>
+</html>
